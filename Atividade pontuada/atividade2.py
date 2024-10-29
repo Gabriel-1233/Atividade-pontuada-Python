@@ -60,18 +60,56 @@ def buscar_funcionario():
             print(f"Nome: {func.nome_do_funcionario}\nSobrenome: {func.sobrenome_do_funcionario}\nIdade: {func.idade_do_funcionario}")
             print(f"CPF: {func.cpf_do_funcionario}\nFunção: {func.funcao_do_funcionario}\nSalário: {func.salario_do_funcionario}")
             return func
-    print("CPF inválido.")
-    return 0
+        if not cpf == func.cpf_do_funcionario:
+            print("CPF inválido.")
+            return 0
 
 def listar_funcionarios():
+    if lista_de_funcionarios == []:
+        print("Lista vazia ! ")
     for func in lista_de_funcionarios:
         print(f"Nome: {func.nome_do_funcionario}, Sobrenome: {func.sobrenome_do_funcionario}, Idade: {func.idade_do_funcionario}, CPF: {func.cpf_do_funcionario}, Função: {func.funcao_do_funcionario}, Salário: {func.salario_do_funcionario}")
-
 def atualizar_funcionario():
-    pass
+    cpf = int(input("Digite o CPF do funcionário que deseja atualizar: "))
+    limpar_tela()
+    for func in lista_de_funcionarios:
+        if cpf == func.cpf_do_funcionario:
+            print(f"Nome atual: {func.nome_do_funcionario}")
+            novo_nome = input("Novo nome (pressione Enter para manter o atual): ")
+            if novo_nome:
+                func.nome_do_funcionario = novo_nome
+
+            print(f"Sobrenome atual: {func.sobrenome_do_funcionario}")
+            novo_sobrenome = input("Novo sobrenome (pressione Enter para manter o atual): ")
+            if novo_sobrenome:
+                func.sobrenome_do_funcionario = novo_sobrenome
+
+            print(f"Função atual: {func.funcao_do_funcionario}")
+            nova_funcao = input("Nova função (pressione Enter para manter a atual): ")
+            if nova_funcao:
+                func.funcao_do_funcionario = nova_funcao
+
+            print(f"Salário atual: {func.salario_do_funcionario}")
+            novo_salario = input("Novo salário (pressione Enter para manter o atual): ")
+            if novo_salario:
+                func.salario_do_funcionario = float(novo_salario)
+            
+            limpar_tela()
+            print("Funcionário atualizado com sucesso.")
+            return func
+    print("Funcionário não encontrado.")
+
 
 def demitir_funcionario():
-    pass
+    cpf = int(input("Digite o CPF do funcionário que deseja demitir: "))
+    limpar_tela()
+    for func in lista_de_funcionarios:
+        if cpf == func.cpf_do_funcionario:
+            lista_de_funcionarios.remove(func)
+            print(f"Funcionário com CPF {cpf} foi demitido com sucesso.")
+            return func
+    print("Funcionário não encontrado.")
+
 
 
 lista_de_funcionarios = []
